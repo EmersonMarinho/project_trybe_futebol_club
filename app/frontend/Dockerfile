@@ -6,7 +6,6 @@ WORKDIR /app-frontend
 
 # Copiar os package.json e package-lock.json para o container
 COPY package*.json ./
-COPY package-lock.json ./
 
 # Instalar as dependências Node
 RUN npm install
