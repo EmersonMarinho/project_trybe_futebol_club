@@ -17,4 +17,26 @@ export default class MatchesService {
     });
     return matches;
   }
+
+  static async finishMatch(id: number) {
+    await MatchesModel.update(
+      { inProgress: false },
+      { where: { id } },
+    );
+
+    // if (!score) return { error: 'Score is required' };
+
+    // const [homeTeamGoals, awayTeamGoals] = score.split('-');
+    // const match = await MatchesModel.findByPk(id);
+
+    // if (!match) {
+    //   return null;
+    // }
+    // match.homeTeamGoals = Number(homeTeamGoals);
+    // match.awayTeamGoals = Number(awayTeamGoals);
+    // match.inProgress = false;
+    // await match.save().then(() => console.log('Match updated')).catch((err) =>
+    //   console.log(err.message));
+    // return match;
+  }
 }
