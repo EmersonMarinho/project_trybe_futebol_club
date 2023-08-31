@@ -23,20 +23,12 @@ export default class MatchesService {
       { inProgress: false },
       { where: { id } },
     );
+  }
 
-    // if (!score) return { error: 'Score is required' };
-
-    // const [homeTeamGoals, awayTeamGoals] = score.split('-');
-    // const match = await MatchesModel.findByPk(id);
-
-    // if (!match) {
-    //   return null;
-    // }
-    // match.homeTeamGoals = Number(homeTeamGoals);
-    // match.awayTeamGoals = Number(awayTeamGoals);
-    // match.inProgress = false;
-    // await match.save().then(() => console.log('Match updated')).catch((err) =>
-    //   console.log(err.message));
-    // return match;
+  static async updateMatch(id: string, score: { homeTeamGoals: number, awayTeamGoals: number }) {
+    await MatchesModel.update(
+      score,
+      { where: { id } },
+    );
   }
 }
