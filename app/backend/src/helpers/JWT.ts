@@ -10,4 +10,8 @@ export default class JWT {
   static generateToken(payload: Payload) {
     return jwt.sign(payload, secret);
   }
+
+  static verifyToken(token: string) {
+    return jwt.verify(token, secret);
+  }
 }
