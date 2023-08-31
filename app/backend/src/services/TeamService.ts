@@ -10,6 +10,11 @@ class TeamService {
     const team = await TeamModel.findByPk(id);
     return team;
   }
+
+  static async ifTeamExists(teamId: number): Promise<boolean> {
+    const team = await TeamModel.findByPk(teamId);
+    return !!team;
+  }
 }
 
 export default TeamService;
