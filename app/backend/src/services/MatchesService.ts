@@ -31,4 +31,13 @@ export default class MatchesService {
       { where: { id } },
     );
   }
+
+  static async createMatch(payload:
+  { homeTeamId: number, awayTeamId: number, homeTeamGoals: number, awayTeamGoals: number }) {
+    const match = await MatchesModel.create({
+      ...payload,
+      inProgress: true,
+    });
+    return match;
+  }
 }

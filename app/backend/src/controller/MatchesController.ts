@@ -32,4 +32,17 @@ export default class MatchesController {
     await MatchesService.updateMatch(id, score);
     return res.status(200).json({ message: 'Updated' });
   }
+
+  static async createMatch(req: Request, res: Response) {
+    try {
+      const { homeTeamId, awayTeamId, homeTeamGoals, awayTeamGoals } = req.body;
+      const newMatch = await MatchesService.createMatch(
+        { homeTeamId, awayTeamId, homeTeamGoals, awayTeamGoals },
+      );
+      res.status(201).json(newMatch);
+    } catch (error) {
+      console.error((error as Error).message);
+      res.status(500).json({ message: 'Something went wrong' });
+    }
+  }
 }
