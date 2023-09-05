@@ -8,4 +8,6 @@ export default interface ILeaderBoard {
   totalDraws: number;
   goalsFavor: number;
   goalsOwn: number;
+  goalsBalance?: number;
+  efficiency?: string;
 }
