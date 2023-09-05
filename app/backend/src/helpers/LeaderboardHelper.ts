@@ -95,30 +95,6 @@ export default class LeaderboardUtils {
     return updatedLeaderboard;
   }
 
-  static updateGoalsBalance(leaderboard: ILeaderboard[], matches: IMatches[]): ILeaderboard[] {
-    return leaderboard.map((team) => {
-      let goalsBalance = team.goalsBalance || 0;
-      matches.forEach((match) => {
-        if (!match.inProgress) {
-          if (team.id === match.homeTeamId) {
-            goalsBalance += match.homeTeamGoals - match.awayTeamGoals;
-          } else if (team.id === match.awayTeamId) {
-            goalsBalance += match.awayTeamGoals - match.homeTeamGoals;
-          }
-        }
-      });
-
-      return { ...team, goalsBalance };
-    });
-  }
-
-  static updateEfficiency(leaderboard: ILeaderboard[]): ILeaderboard[] {
-    return leaderboard.map((team) => {
-      const efficiency = ((team.totalPoints / (team.totalGames * 3)) * 100).toFixed(2);
-      return { ...team, efficiency };
-    });
-  }
-
   static orderLeaderboard(leaderboard: ILeaderboard[]): ILeaderboard[] {
     const orderLeaderboard = leaderboard.sort((a, b) => {
       if (a.totalPoints !== b.totalPoints) {
